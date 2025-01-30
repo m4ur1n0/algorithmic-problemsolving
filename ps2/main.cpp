@@ -69,23 +69,25 @@ int main() {
 
     // TESTING P2
 
-    // vector<Price> giftPrices = {
-    //     {5, 10, 12},   // Gift 0: friday=5, before=10, after=12
-    //     {6, 8, 9},     // Gift 1: friday=6, before=8, after=9
-    //     {10, 15, 14},  // Gift 2: friday=10, before=15, after=14
-    //     {7, 9, 11},    // Gift 3: friday=7, before=9, after=11
-    //     {4, 6, 8},     // Gift 4: friday=4, before=6, after=8
-    //     {12, 14, 16},  // Gift 5: friday=12, before=14, after=16
-    //     {8, 10, 12},   // Gift 6: friday=8, before=10, after=12
-    //     {9, 11, 13},   // Gift 7: friday=9, before=11, after=13
-    //     {3, 5, 7},     // Gift 8: friday=3, before=5, after=7
-    //     {11, 13, 15}   // Gift 9: friday=11, before=13, after=15
-    // };
-    // int k = 3; // Buy at most 3 gifts on Friday
+    // @ 10 --- 5 + 8 + 10 + 7 + 6 + 12 + 8 + 9 + 3 + 11 = 79
+    // @ 0  --- 10 + 8 + 14 + 9 + 6 + 14 + 10 + 11 + 5 + 13 = 100
+    vector<Price> giftPrices = {
+        {5, 10, 12},   // Gift 0: savings = 10 - 5 = 5
+        {15, 8, 9},    // Gift 1: savings = 8 - 15 = -7 (negative, skip)
+        {10, 15, 14},  // Gift 2: savings = 14 - 10 = 4
+        {7, 9, 11},    // Gift 3: savings = 9 - 7 = 2
+        {20, 6, 8},    // Gift 4: savings = 6 - 20 = -14 (negative, skip)
+        {12, 14, 16},  // Gift 5: savings = 14 - 12 = 2
+        {8, 10, 12},   // Gift 6: savings = 10 - 8 = 2
+        {9, 11, 13},   // Gift 7: savings = 11 - 9 = 2
+        {3, 5, 7},     // Gift 8: savings = 5 - 3 = 2
+        {11, 13, 15}   // Gift 9: savings = 13 - 11 = 2
+    };
+    int k = 0; 
 
-    // long long total = MinCost(giftPrices, k);
+    long long total = MinCost(giftPrices, k);
 
-    // cout << total << endl;
+    cout << total << endl;
 
 
 

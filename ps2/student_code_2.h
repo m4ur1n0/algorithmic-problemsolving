@@ -38,6 +38,8 @@ long long int MinCost(const vector<Price>& giftPrices, int k) {
         for (Price p : giftPrices) {
             total += min(p.after, p.before);
         }
+
+        return total;
     }
 
 
@@ -53,7 +55,7 @@ long long int MinCost(const vector<Price>& giftPrices, int k) {
     // now ignoring edge cases
     // we can add the worst case scenario (no friday savings)
         // and then we can find the k best savings, and subtract the differences from the total
-    vector<int> savingsOnly(numGifts);
+    // vector<int> savingsOnly(numGifts);
     
     for(int i = 0; i < numGifts; i++) {
         Price p = giftPrices[i];
@@ -63,13 +65,15 @@ long long int MinCost(const vector<Price>& giftPrices, int k) {
     }
 
     // we know k > 0
-    nth_element(allSavings.begin(), allSavings.begin() + k -1, allSavings.end(), greater<int>());
+    // nth_element DOESNT SORT THE FIRST N ELEMENTS just buts element n in its proper place and makes sure each side is partitioned correctly by comp func
+    // doesn't mean first n elements are in order!!!!!
+    nth_element(allSavings.begin(), allSavings.begin() + k, allSavings.end(), greater<int>());
 
     // then we can just iterate thru thee first k best savings, subtract, and return!!!!
 
     for (int i = 0; i < k; i++) {
-        if(allSavings[i] < 0) break; // lol found the hard way
-        // cout << "SAVING : " << allSavings[i] << endl;
+        if(allSavings[i] < 0) continue; // lol found the hard way -- alice won't buy gifts on black friday if they're more expensive
+        // cout << "SAVING : " << allSavings[i] << endl
         total -= allSavings[i];
     }
 
